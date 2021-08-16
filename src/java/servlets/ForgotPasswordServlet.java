@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -36,17 +31,16 @@ public class ForgotPasswordServlet extends HttpServlet {
         AccountService as = new AccountService();
         String path = getServletContext().getRealPath("/WEB-INF");
         boolean forgotPassword;
-        
+
         try {
             forgotPassword = as.forgotPassword(email, path);
             if (forgotPassword == true) {
-                request.setAttribute("message", "Your message has successfully sent.");
-                return;
+                request.setAttribute("message", "Your message has successfully sent.");      
             }
         } catch (Exception ex) {
             request.setAttribute("message", ex.getMessage());
         }
-          getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/forgot.jsp").forward(request, response);
 
     }
 }
